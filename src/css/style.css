@@ -84,6 +84,20 @@ body{
   background-clip: calc();
 }
 
+.sample3 {
+  font-size:2em;
+  text-align:center;
+  font-weight:bold;
+  color: transparent;
+  margin: 0px;
+  background : rgba(0,0,0,1);
+  text-shadow : 
+    0 0 0.1em rgba(255,255,255,0.05),
+    0.01em 0.04em 0.03em rgba(255,255,255,0.4);
+  -webkit-background-clip : text;
+  background-clip: calc();
+}
+
 /* ボタンのデザイン */
 *,
 *:before,
