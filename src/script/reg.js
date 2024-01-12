@@ -45,34 +45,30 @@ $('.sel__box__options').click(function() {
   $currentSel.children('select').prop('selectedIndex', index + 1);
 });
 
-  new Vue({
-    el: '#app',
-    data: {
-      name: '',
-      nickname: '',
-      text: '',
-      NameError: false,
-      isNicknameError: false,
-      TextError: false
+new Vue({
+  el: '#app',
+  data: {
+    name: '',
+    hinsyu: '', // hinsyuのデータプロパティを追加
+    text: '',
+    NameError: false,
+    HinsyuError: false, // HinsyuErrorプロパティの名前を修正
+    TextError: false
+  },
+  methods: {
+    validateForm: function () {
+      this.NameError = this.name.trim() === '';
+      this.HinsyuError = this.hinsyu.trim() === ''; // hinsyuが選択されているか確認
+      this.TextError = this.text.trim() === '';
+
+      // エラーがある場合はtrueを返す
+      return this.NameError || this.HinsyuError || this.TextError;
     },
-    methods: {
-      validateForm: function () {
-        this.NameError = this.name.trim() === '';
-        this.HinsyuError = !this.validatePhoneNumber(this.hinsyu);
-        this.TextError = this.text.trim() === '';
-  
-        // エラーがないかどうかを返す
-        return !(this.name || this.hinsyu || this.text);
-      },
-      validatePostCode: function (postCode) {
-        // 郵便番号のバリデーション（正確に7桁であること）
-        return /^\d{7}$/.test(postCode.trim());
-      },
-      submitForm: function () {
-        if (this.validateForm()) {
-            // バリデーションが通過した場合、通常のHTMLフォームの送信を行う
-            document.getElementById('appForm').submit();
-        }
+    submitForm: function () {
+      if (!this.validateForm()) {
+        // バリデーションが通過した場合、フォームを送信
+        document.getElementById('appForm').submit();
       }
     }
-  });
+  }
+});

@@ -6,3 +6,7 @@
 .left-aligned-text{
     text-align: left;
   }
+
+.error{
+  color: red;
+}

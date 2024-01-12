@@ -24,12 +24,16 @@
                 猫ちゃんの品種<br>
                     <div class="sel sel--black-panther">
                         <select name="select-profession" id="select-profession">
-                            <option value="" disabled>品種</option>
-                            <option value="hacker">Hacker</option>
-                            <option value="gamer">Gamer</option>
-                            <option value="developer">Developer</option>
-                            <option value="programmer">Programmer</option>
-                            <option value="designer">Designer</option>
+                            <option value="za" disabled>雑種</option>
+                            <option value="a">アメリカンショートヘア</option>
+                            <option value="su">スコティッシュフォールド</option>
+                            <option value="ro">ロシアンブルー</option>
+                            <option value="ra">ラグドール</option>
+                            <option value="sya">シャム</option>
+                            <option value="no">ノルウェージャンフォレストキャット</option>
+                            <option value="ma">マンチカン</option>
+                            <option value="me">メインクーン</option>
+                            <option value="pe">ペルシャ</option>
                         </select>
                     </div>
                 <br>
