@@ -23,10 +23,11 @@
 			echo '<tr><th>猫no.</th><th>名前</th><th>品種</th><th>説明</th></tr>';
 			$pdo = new PDO($connect,USER,PASS);
 			if(isset($_POST['keyword'])){
-    			$sql=$pdo->prepare('select * from product where catbreedname like ?');
+    			$sql=$pdo->prepare('select * from Varieties where catbreedname like ?');
     			$sql->execute(['%'.$_POST['keyword'].'%']);
 			}else{
-    			$sql=$pdo->query('select * from Cat');
+    			$sql=$pdo->query('select cat.id,cat.name,Varieties.catbreedname,cat.text
+				from cat,Varieties where cat.catbreedid = Varieties.catbreedid');
 			}
 			foreach($sql as $row){
     			$id=$row['catid'];

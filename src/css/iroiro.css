@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+.left-aligned-text{
+    text-align: left;
+  }
