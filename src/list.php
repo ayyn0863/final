@@ -26,8 +26,8 @@
     			$sql=$pdo->prepare('select * from Varieties where catbreedname like ?');
     			$sql->execute(['%'.$_POST['keyword'].'%']);
 			}else{
-    			$sql=$pdo->query('select cat.id,cat.name,Varieties.catbreedname,cat.text
-				from cat,Varieties where cat.catbreedid = Varieties.catbreedid');
+    			$sql=$pdo->query('select Cat.catid,Cat.catname,Varieties.catbreedname,Cat.text
+				from Cat,Varieties where Cat.catbreedid = Varieties.catbreedid');
 			}
 			foreach($sql as $row){
     			$id=$row['catid'];

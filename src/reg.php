@@ -24,6 +24,7 @@
                 猫ちゃんの品種<br>
                     <div class="sel sel--black-panther">
                         <select name="select-profession" id="select-profession">
+                            <option value="" disabled>品種</option>
                             <option value="za" disabled>雑種</option>
                             <option value="a">アメリカンショートヘア</option>
                             <option value="su">スコティッシュフォールド</option>
@@ -38,11 +39,11 @@
                     </div>
                 <br>
                 説明<br>
-                <input v-model="text" type="text" class="text" name="cattext"><br>
+                <textarea v-model="text" class="text" name="cattext" cols="30" rows="5" placeholder="説明を入力してください"></textarea><br>
                 <div v-if="TextError" class="error">説明を入力してください</div>
-        
+                <br>
                 <div class="bobo">
-                    <button class="example" type="button" @click="submitForm"><span>登録する</span></button>
+                    <button class="btn btn-border" type="button" @click="submitForm"><span>登録する</span></button>
                 </div>
             </div>
         </div>
