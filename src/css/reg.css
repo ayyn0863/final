@@ -26,10 +26,10 @@ body {
 
 /* ===== Select Box ===== */
 .sel {
-  font-size: 1rem;
+  font-size: 0.6rem;
   display: inline-block;
   margin: 3em 2em;
-  width: 350px;
+  width: 200px;
   background-color: transparent;
   position: relative;
   cursor: pointer;

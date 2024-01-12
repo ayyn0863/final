@@ -24,7 +24,7 @@
                 猫ちゃんの品種<br>
                     <div class="sel sel--black-panther">
                         <select name="select-profession" id="select-profession">
-                            <option value="" disabled>Profession</option>
+                            <option value="" disabled>品種</option>
                             <option value="hacker">Hacker</option>
                             <option value="gamer">Gamer</option>
                             <option value="developer">Developer</option>
