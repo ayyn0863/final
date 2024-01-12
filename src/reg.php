@@ -71,7 +71,7 @@
             </div>
         </div>
         </form>
-            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
             <script src="script/reg.js"></script>
     </body>
 </html>
