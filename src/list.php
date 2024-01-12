@@ -27,24 +27,23 @@
     			$sql->execute(['%'.$_POST['keyword'].'%']);
 			}else{
     			$sql=$pdo->query('select Cat.catid,Cat.catname,Varieties.catbreedname,Cat.text
-				from Cat,Varieties where Cat.catbreedid = Varieties.catbreedid');
+				from Cat,Varieties
+				where Cat.catbreedid = Varieties.catbreedid');
 			}
-			foreach($sql as $row){
-    			$id=$row['catid'];
-				echo '<tr>';
-				echo '<td>',$id,'</td>';
-				echo '<td>';
-				echo $row['catname'];
-				echo '</td>';
-				echo '<td>';
-				echo $row['catbreedname'];
-				echo '</td>';
-				echo '<td>';
-				echo $row['text'];
-				echo '</td>';
-				echo '</tr>';
-		}
-		echo '</table>';
+			if ($sql->rowCount() > 0) {
+				foreach ($sql as $row) {
+					$id = $row['catid'];
+					echo '<tr>';
+					echo '<td>', $id, '</td>';
+					echo '<td>', $row['catname'], '</td>';
+					echo '<td>', $row['catbreedname'], '</td>';
+					echo '<td>', $row['text'], '</td>';
+					echo '</tr>';
+				}
+			} else {
+				echo '<tr><td colspan="4">データがありません</td></tr>';
+			}
+			echo '</table>';
 		?>
     </body>
 </html>
