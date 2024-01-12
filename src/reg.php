@@ -32,7 +32,6 @@
                         <option value="designer">Designer</option>
                     </select>
                 </div>
-                <hr class="rule">
                 <br>
                 説明<br>
                 <input v-model="text" type="text" class="text" name="cattext"><br>
