@@ -3,13 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/reg.css">
-		<link rel="stylesheet" href="css/iroiro.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/reg.css">
+		<link rel="stylesheet" href="../css/iroiro.css">
         <title>猫の里親-登録画面-</title>
 	</head>
 	<body>
-        <form id="appForm" action="reg-output.php" method="post">>
+        <form id="appForm" action="reg-output.php" method="post">
         <div class="bg_pattern Paper_v2"></div>
 
         <h1 class="sample">登録</h1>
