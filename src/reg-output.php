@@ -35,6 +35,9 @@ try {
     } else {
         // データが足りない場合の処理
         echo '<script>alert("データが不足しています。");</script>';
+        $catname =  $_POST['catname'];
+        echo '<script>alert($catname);</script>';
+
         echo '<a href="reg.php">登録画面に戻る</a><br>';
     }
 } catch (PDOException $e) {
