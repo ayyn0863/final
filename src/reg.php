@@ -23,7 +23,7 @@
 
                 <br>
                 猫ちゃんの品種wk<br>
-                <div>
+                <div class="sel sel--black-panther">
                     <select name="catbreedid2" id="select-breed2">
                         <option value="1">アメリカンショートヘア</option>
                         <option value="2">シャム</option>
