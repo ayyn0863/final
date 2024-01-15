@@ -25,16 +25,16 @@
                     <div class="sel sel--black-panther">
                         <select name="catbreedid" id="select-breed">
                             <option value="" disabled>品種</option>
-                            <option value="1" disabled>雑種</option>
-                            <option value="2">アメリカンショートヘア</option>
-                            <option value="3">シャム</option>
-                            <option value="4">スコティッシュフォールド</option>
-                            <option value="5">ノルウェージャンフォレストキャット</option>
-                            <option value="6">ペルシャ</option>
-                            <option value="7">マンチカン</option>
-                            <option value="8">メインクーン</option>
-                            <option value="9">ラグドール</option>
-                            <option value="10">ロシアンブルー</option>  
+                            <option value="1">アメリカンショートヘア</option>
+                            <option value="2">シャム</option>
+                            <option value="3">スコティッシュフォールド</option>
+                            <option value="4">ノルウェージャンフォレストキャット</option>
+                            <option value="5">ペルシャ</option>
+                            <option value="6">マンチカン</option>
+                            <option value="7">メインクーン</option>
+                            <option value="8">ラグドール</option>
+                            <option value="9">ロシアンブルー</option>
+                            <option value="10" disabled>雑種</option>  
                         </select>
                     </div>
                 <br>
