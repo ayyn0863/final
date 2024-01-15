@@ -1,9 +1,9 @@
-<?php error_reporting(E_ALL);
-ini_set('display_errors', '1');?>
-<?php session_start(); ?>
-<?php require 'connect.php' ;?>
-
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+session_start();
+require 'connect.php';
+
 try {
     if (isset($_POST['catname']) && isset($_POST['catbreedid']) && isset($_POST['text'])) {
         
@@ -43,6 +43,3 @@ try {
     echo '<a href="reg.php">登録画面に戻る</a><br>';
 }
 ?>
-<?php
- $pdo = null;   //DB切断
- ?>
