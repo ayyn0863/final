@@ -45,45 +45,24 @@ $('.sel__box__options').click(function() {
   $currentSel.children('select').prop('selectedIndex', index + 1);
 });
 
-      new Vue({
-          el: '#appForm',
-          data: {
-              name: '',
-              hinsyu: '',
-              text: '',
-              NameError: false,
-              HinsyuError: false,
-              TextError: false
-          },
-          methods: {
-              validateForm: function () {
-                  this.NameError = this.name.trim() === '';
-                  this.HinsyuError = this.hinsyu.trim() === '' || this.hinsyu === null;
-                  this.TextError = this.text.trim() === '';
-                  
-                  return this.NameError || this.HinsyuError || this.TextError;
-              },
-              submitForm: function () {
-                  if (!this.validateForm()) {
-                      document.getElementById('appForm').submit();
-                  }
-              }
-          },
-          watch: {
-              name: function () {
-                  if (this.name.trim() !== '') {
-                      this.NameError = false;
-                  }
-              },
-        hinsyu: function () {
-          if (this.hinsyu !== null && this.hinsyu.trim() !== '') {
-                this.HinsyuError = false;
-              }
-        },
-        text: function () {
-          if (this.text.trim() !== '') {
-                this.TextError = false;
+new Vue({
+  el: '#appForm',
+  data: {
+      name: '',
+      hinsyu: '',
+      text: '',
+      errorMsg: '' // エラーメッセージを格納する変数を追加
+  },
+  methods: {
+      submitForm: function () {
+          // 入力が正常であることを確認
+          if (this.name && this.hinsyu && this.text) {
+              // フォームを送信
+              this.$el.submit();
+          } else {
+              // エラーメッセージを表示
+              this.errorMsg = '入力エラー: 全ての項目を正しく入力してください。';
           }
       }
-    }
+  }
 });

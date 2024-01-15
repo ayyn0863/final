@@ -1,49 +1,38 @@
+<?php session_start(); ?>
+<?php require 'connect.php' ;?>
+
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-session_start();
-require 'connect.php';
-
 try {
-    if (isset($_POST['catname']) && isset($_POST['catbreedid']) && isset($_POST['text'])) {
-        
-        $pdo = new PDO($connect, USER, PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // データベースへの接続
+    $pdo = new PDO ($connect,USER,PASS);
+    // エラーモードを例外に設定
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // 重複したcatnameの確認
-        $sql = $pdo->prepare('SELECT * FROM Cat WHERE catname = ?');
-        $sql->execute([$_POST['catname']]);
-        $existingUser = $sql->fetch(PDO::FETCH_ASSOC);
+    // POSTデータから取得
+    $catname = $_POST['catname'];
+    $catbreedid = $_POST['catbreedid'];
+    $cattext = $_POST['cattext'];
 
-        if ($existingUser) {
-            echo '<script>alert("同じ名前の猫が既に存在します。");</script>';
-            echo '<a href="reg.php">登録画面に戻る</a><br>';
-            exit();
-        }
+    // プリペアドステートメントを作成
+    $stmt = $pdo->prepare("INSERT INTO Cat (catname, catbreedid, text) VALUES (:catname, :catbreedid, :cattext)");
 
-        // Catテーブルにデータを挿入する正しいSQLクエリ
-        $sql = $pdo->prepare('INSERT INTO Cat (catname, catbreedid, text) VALUES (?, ?, ?)');
-        $sql->execute([
-            $_POST['catname'],
-            $_POST['catbreedid'],
-            $_POST['cattext']
-        ]);
+    // パラメータに値をバインド
+    $stmt->bindParam(':catname', $catname);
+    $stmt->bindParam(':catbreedid', $catbreedid);
+    $stmt->bindParam(':cattext', $cattext);
 
-        // 登録が成功した場合、list.php にリダイレクト
-        header('Location: list.php');
-        exit();
-    } else {
-        // データが足りない場合の処理
-        
-        echo '<script>alert("データが不足しています。2");</script>';
-        $catname =  $_POST['catname'];
-        echo '<script>alert($catname);</script>';
+    // プリペアドステートメントを実行
+    $stmt->execute();
 
-        echo '<a href="reg.php">登録画面に戻る</a><br>';
-    }
-} catch (PDOException $e) {
-    // エラーハンドリング
-    echo '<script>alert("データベースエラー")</script>' . htmlspecialchars($e->getMessage());
-    echo '<a href="reg.php">登録画面に戻る</a><br>';
+    // 登録成功時にリダイレクト
+    header("Location: list.php");
+    exit();
+
+} catch(PDOException $e) {
+    // エラーが発生した場合はエラーメッセージを表示
+    echo "エラー: " . $e->getMessage();
 }
+
+// データベース接続を閉じる
+$pdo = null;
 ?>
