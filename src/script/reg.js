@@ -46,7 +46,7 @@ $('.sel__box__options').click(function() {
 });
 
 new Vue({
-  el: '#app',
+  el: '#appForm',
   data: {
     name: '',
     hinsyu: '', // hinsyuのデータプロパティを追加
@@ -58,7 +58,7 @@ new Vue({
   methods: {
     validateForm: function () {
       this.NameError = this.name.trim() === '';
-      this.HinsyuError = this.hinsyu.trim() === ''; // hinsyuが選択されているか確認
+      this.HinsyuError = this.hinsyu.trim() === '' || this.hinsyu === null; // hinsyuが選択されているか確認
       this.TextError = this.text.trim() === '';
 
       // エラーがある場合はtrueを返す
@@ -68,6 +68,23 @@ new Vue({
       if (!this.validateForm()) {
         // バリデーションが通過した場合、フォームを送信
         document.getElementById('appForm').submit();
+      }
+    }
+  },
+  watch: {
+    name: function () {
+      if (this.name.trim() !== '') {
+        this.NameError = false; // エラーがない場合、エラーメッセージをクリア
+      }
+    },
+    hinsyu: function () {
+      if (this.hinsyu !== null && this.hinsyu.trim() !== '') {
+        this.HinsyuError = false; // エラーがない場合、エラーメッセージをクリア
+      }
+    },
+    text: function () {
+      if (this.text.trim() !== '') {
+        this.TextError = false; // エラーがない場合、エラーメッセージをクリア
       }
     }
   }
