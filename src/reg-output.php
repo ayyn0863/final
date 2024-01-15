@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php require 'connect.php' ;?>
-
 <?php
 try {
     // データベースへの接続
