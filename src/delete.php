@@ -9,7 +9,7 @@
 	</head>
 	<body>
         <div class="bg_pattern Paper_v2"></div>
-
+		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
 		<h1 class="sample">削除</h1>
 
 		<?php

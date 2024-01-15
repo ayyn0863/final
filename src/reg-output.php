@@ -1,9 +1,9 @@
-<?php
-session_start();
-require 'connect.php';
+<?php session_start(); ?>
+<?php require 'connect.php' ;?>
 
+<?php
 try {
-    if (isset($_POST['catname']) && isset($_POST['catbreedid']) && isset($_POST['cattext'])) {
+    if (isset($_POST['catname']) && isset($_POST['catbreedid']) && isset($_POST['text'])) {
         
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -41,3 +41,6 @@ try {
     echo '<a href="reg.php">登録画面に戻る</a><br>';
 }
 ?>
+<?php
+ $pdo = null;   //DB切断
+ ?>
