@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/reg.css" src="">
+		<link rel="stylesheet" href="css/reg.css">
 		<link rel="stylesheet" href="css/iroiro.css">
         <title>猫の里親-登録画面-</title>
 	</head>
@@ -23,18 +23,18 @@
                 <br>
                 猫ちゃんの品種<br>
                     <div class="sel sel--black-panther">
-                        <select name="select-profession" id="select-profession">
+                        <select name="catbreedid" id="select-breed">
                             <option value="" disabled>品種</option>
-                            <option value="za" disabled>雑種</option>
-                            <option value="a">アメリカンショートヘア</option>
-                            <option value="su">スコティッシュフォールド</option>
-                            <option value="ro">ロシアンブルー</option>
-                            <option value="ra">ラグドール</option>
-                            <option value="sya">シャム</option>
-                            <option value="no">ノルウェージャンフォレストキャット</option>
-                            <option value="ma">マンチカン</option>
-                            <option value="me">メインクーン</option>
-                            <option value="pe">ペルシャ</option>
+                            <option value="1" disabled>雑種</option>
+                            <option value="2">アメリカンショートヘア</option>
+                            <option value="3">シャム</option>
+                            <option value="4">スコティッシュフォールド</option>
+                            <option value="5">ノルウェージャンフォレストキャット</option>
+                            <option value="6">ペルシャ</option>
+                            <option value="7">マンチカン</option>
+                            <option value="8">メインクーン</option>
+                            <option value="9">ラグドール</option>
+                            <option value="10">ロシアンブルー</option>  
                         </select>
                     </div>
                 <br>
