@@ -21,10 +21,6 @@
                 <input v-model="name" type="text" class="text" name="catname"><br>
                 <div v-if="NameError" class="error">猫ちゃんのお名前を入力してください</div>
                 <br>
-                <select>
-                    <option value="a">a</option>
-                    <option value="i">i</option>
-                </select>
                 猫ちゃんの品種<br>
                 <div class="sel sel--black-panther">
                     <select v-model="hinsyu" name="catbreedid" id="select-breed">
