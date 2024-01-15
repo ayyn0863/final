@@ -43,7 +43,7 @@
                 <div v-if="TextError" class="error">説明を入力してください</div>
                 <br>
                 <div class="bobo">
-                    <button class="btn btn-border" @click.prevent="submitForm"><span>登録する</span></button>
+                    <a href="reg-output.php" class="btn btn-border" @click.prevent="submitForm"><span>登録する</span></a>
                 </div>
             </div>
         </div>
