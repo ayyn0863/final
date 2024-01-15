@@ -35,7 +35,7 @@ try {
     } else {
         // データが足りない場合の処理
         $catname =  $_POST['catname'];
-        echo '<script>alert("データが不足しています。"+$catname);</script>';
+        echo '<script>alert("データが不足しています。2"+$catname);</script>';
         $catname =  $_POST['catname'];
         echo '<script>alert($catname);</script>';
 
