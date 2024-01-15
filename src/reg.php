@@ -11,7 +11,6 @@
 <body>
     <form id="appForm" action="reg-output.php" method="post">
         <div class="bg_pattern Paper_v2"></div>
-        <a href="index.html" class="btn btn-border"><span>戻る</span></a>
         <h1 class="sample">登録</h1>
 
         <div class="container">
@@ -43,6 +42,7 @@
                 <div v-if="TextError" class="error">説明を入力してください</div>
                 <br>
                 <div class="bobo">
+                    <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                     <a href="reg-output.php" class="btn btn-border" @click.prevent="submitForm"><span>登録する</span></a>
                 </div>
             </div>
