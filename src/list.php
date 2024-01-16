@@ -11,9 +11,6 @@
         <div class="bg_pattern Paper_v2"></div>
 		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
         <h1 class="sample">一覧</h1>
-
-		<div class="container">
-        <div class="left-aligned-text">
 		<form action="list.php" method="post">
     		品種検索
 			<input type="text" name="keyword">
@@ -21,6 +18,8 @@
 		</from>
 	<hr>
 		<?php
+			echo '<div class="container">';
+			echo '<div class="left-aligned-text">';
 			echo '<table>';
 			echo '<tr><th>猫no.</th><th>名前</th><th>品種</th><th>説明</th></tr>';
 			$pdo = new PDO($connect,USER,PASS);
@@ -46,6 +45,8 @@
 				echo '<tr><td colspan="4">データがありません</td></tr>';
 			}
 			echo '</table>';
+			echo '</div>';
+			echo '</div>';
 		?>
 		</div>
 		</div>
