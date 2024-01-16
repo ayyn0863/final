@@ -1,5 +1,5 @@
-<?php session_start()?>
 <?php
+session_start();
 require 'connect.php';
 
 try {
@@ -27,6 +27,7 @@ try {
     // 更新成功時にリダイレクト
     header("Location: list.php");
     exit();
+
 } catch (PDOException $e) {
     // エラーが発生した場合はエラーメッセージを表示
     echo "エラー: " . $e->getMessage();
