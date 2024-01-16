@@ -12,6 +12,8 @@
 		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
         <h1 class="sample">一覧</h1>
 
+		<div class="container">
+        <div class="left-aligned-text">
 		<form action="list.php" method="post">
     		品種検索
 			<input type="text" name="keyword">
@@ -45,6 +47,8 @@
 			}
 			echo '</table>';
 		?>
+		</div>
+		</div>
     </body>
 </html>
 <?php

@@ -18,7 +18,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // URLパラメータから猫のIDを取得
-        $catid = $_GET['catid'];
+        $catid = $_POST['catid'];
 
         // プリペアドステートメントを作成
         $stmt = $pdo->prepare("SELECT catname, text FROM Cat WHERE catid = :catid");
@@ -62,7 +62,7 @@
 
                 <div class="bobo">
                     <a href="list.php" class="btn btn-border"><span>戻る</span></a>
-                    <button type="button" class="btn btn-border" @click.prevent="submitForm" :disabled="!catname || !cattext"><span>更新する</span></button>
+                    <a href="update-input.php" class="btn btn-border" @click.prevent="submitForm" :disabled="!catname || !cattext"><span>更新する</span></a>
                 </div>
             </div>
         </div>
