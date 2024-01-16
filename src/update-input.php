@@ -18,7 +18,7 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // URLパラメータから猫のIDを取得
-        $catid = $_POST['catid'];
+        $catid = isset($_GET['catid']) ? $_GET['catid'] : null;
 
         // プリペアドステートメントを作成
         $stmt = $pdo->prepare("SELECT catname, text FROM Cat WHERE catid = :catid");
