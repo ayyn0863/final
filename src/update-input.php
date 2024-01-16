@@ -53,15 +53,16 @@
                 <br>
 
                 説明<br>
-                <textarea class="text" name="cattext" v-model="cattext" cols="30" rows="5" :value="cattext"></textarea><br>                <div v-if="!cattext" class="error">説明を入力してください</div>
+                <textarea class="text" name="cattext" v-model="cattext" cols="30" rows="5" :value="cattext"></textarea><br>                
+                <div v-if="!cattext" class="error">説明を入力してください</div>
                 <br>
 
                 <!-- エラーメッセージ表示 -->
                 <div v-if="errorMsg" class="error">{{ errorMsg }}</div>
 
                 <div class="bobo">
-                    <a href="update.php" class="btn btn-border"><span>戻る</span></a>
-                    <a href="update-input.php" class="btn btn-border" @click.prevent="submitForm" :disabled="!catname || !cattext"><span>更新する</span></a>
+                <a href="#" class="btn btn-border" @click="goBack"><span>戻る</span></a>
+                <a href="#" class="btn btn-border" @click.prevent="submitForm" :disabled="!catname || !cattext"><span>更新する</span></a>
                 </div>
             </div>
         </div>
