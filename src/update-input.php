@@ -48,20 +48,19 @@
         <div class="container">
             <div class="left-aligned-text">
                 猫ちゃんのお名前<br>
-                <input type="text" class="text" name="catname" v-model="catname" value="<?php echo $row['catname']; ?>"><br>
+                <input type="text" class="text" name="catname" v-model="catname" :value="catname"><br>
                 <div v-if="!catname" class="error">猫ちゃんのお名前を入力してください</div>
                 <br>
 
                 説明<br>
-                <textarea class="text" name="cattext" v-model="cattext" cols="30" rows="5"><?php echo $row['text']; ?></textarea><br>
-                <div v-if="!cattext" class="error">説明を入力してください</div>
+                <textarea class="text" name="cattext" v-model="cattext" cols="30" rows="5" :value="cattext"></textarea><br>                <div v-if="!cattext" class="error">説明を入力してください</div>
                 <br>
 
                 <!-- エラーメッセージ表示 -->
                 <div v-if="errorMsg" class="error">{{ errorMsg }}</div>
 
                 <div class="bobo">
-                    <a href="list.php" class="btn btn-border"><span>戻る</span></a>
+                    <a href="update.php" class="btn btn-border"><span>戻る</span></a>
                     <a href="update-input.php" class="btn btn-border" @click.prevent="submitForm" :disabled="!catname || !cattext"><span>更新する</span></a>
                 </div>
             </div>
