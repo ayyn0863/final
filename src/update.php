@@ -1,3 +1,32 @@
+<?php
+session_start();
+require 'connect.php';
+
+// 選択された猫のIDを取得
+$selectedCatId = isset($_SESSION['selectedCat']) ? $_SESSION['selectedCat'] : null;
+
+if (!$selectedCatId) {
+    // 選択されていない場合はアラートを表示してlist.phpにリダイレクト
+    echo "<script>alert('猫を選択してください。'); window.location='list.php';</script>";
+    exit();
+}
+
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // 選択された猫の情報を取得
+    $stmt = $pdo->prepare("SELECT catname, cattext FROM Cat WHERE catid = ?");
+    $stmt->execute([$selectedCatId]);
+    $catInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // データベース接続を閉じる
+    $pdo = null;
+} catch (PDOException $e) {
+    echo "エラー: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,65 +34,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/iroiro.css">
-    <title>猫の里親-更新画面-</title>
+    <title>猫の里親-変更画面-</title>
 </head>
 <body>
-    <?php session_start(); ?>
-    <?php
-    require 'connect.php';
-
-    try {
-        // データベースへの接続
-        $pdo = new PDO($connect, USER, PASS);
-        // エラーモードを例外に設定
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // プリペアドステートメントを作成
-        $stmt = $pdo->prepare("SELECT catid, catname FROM Cat");
-
-        // プリペアドステートメントを実行
-        $stmt->execute();
-
-        // 猫の一覧を取得
-        $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // 選択された猫の情報を初期化
-        $selectedCat = null;
-
-        // 選択された猫の情報を取得
-        if (isset($_SESSION['selectedCat'])) {
-            $selectedCatId = $_SESSION['selectedCat'];
-            $stmt = $pdo->prepare("SELECT catname FROM Cat WHERE catid = ?");
-            $stmt->execute([$selectedCatId]);
-            $selectedCat = $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-
-        // データベース接続を閉じる
-        $pdo = null;
-    } catch (PDOException $e) {
-        // エラーが発生した場合はエラーメッセージを表示
-        echo "エラー: " . $e->getMessage();
-    }
-    ?>
-
     <div class="bg_pattern Paper_v2"></div>
-    <h1 class="sample">更新</h1>
+    <h1 class="sample">変更</h1>
 
     <div class="container">
         <div class="left-aligned-text">
-            <form action="update-output.php" method="post" onsubmit="return validateForm()">
-                <?php foreach ($cats as $cat): ?>
-                    <label>
-                        <input type="radio" name="catid" value="<?php echo $cat['catid']; ?>"
-                            <?php echo ($selectedCatId == $cat['catid']) ? 'checked' : ''; ?>>
-                        <?php echo $cat['catname']; ?>
-                    </label><br>
-                <?php endforeach; ?>
-                <br>
+            <form action="update-output.php" method="post">
+                <label for="catname">猫の名前：</label>
+                <input type="text" id="catname" name="catname" value="<?php echo $catInfo['catname']; ?>" required><br>
+
+                <label for="cattext">猫の説明：</label>
+                <textarea id="cattext" name="cattext" required><?php echo $catInfo['cattext']; ?></textarea><br>
+
                 <a href="list.php" class="btn btn-border"><span>戻る</span></a>
-                <?php if ($selectedCat): ?>
-                    <button type="submit" class="btn btn-border" id="editLink"><span>更新</span></button>
-                <?php endif; ?>
+                <button type="submit" class="btn btn-border" id="editLink"><span>更新</span></button>
             </form>
         </div>
     </div>
