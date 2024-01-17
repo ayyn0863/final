@@ -46,13 +46,10 @@
                 </label><br>
             <?php endforeach; ?>
             <br>
-
-            <div class="bobo">
             <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                 <?php if (!empty($cats)): ?>
                     <a href="update-input.php" class="btn btn-border" id="editLink"><span>変更</span></a>
                 <?php endif; ?>
-            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>

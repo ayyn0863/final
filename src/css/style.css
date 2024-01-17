@@ -141,12 +141,13 @@ button.btn-border,
 a.btn-border {
   margin-bottom: 12px;
   padding: 0;
-
   -webkit-transition: all 0.3s;
-
   transition: all 0.3s;
-
   border-radius: 0;
+  border-block: none;
+  border-block-end: none;
+  border-right: none;
+  border-left: none;
 }
 
 button.btn-border span,

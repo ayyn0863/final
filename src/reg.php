@@ -46,11 +46,8 @@
 
                 <!-- エラーメッセージ表示 -->
                 <div v-if="errorMsg" class="error">{{ errorMsg }}</div>
-
-                <div class="bobo">
                     <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                     <a href="reg-output.php" class="btn btn-border" @click.prevent="submitForm"><span>登録する</span></a>
-                </div>
             </div>
         </div>
     </form>

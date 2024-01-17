@@ -47,13 +47,10 @@
                     </label><br>
                 <?php endforeach; ?>
                 <br>
-
-                <div class="bobo">
                     <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                     <?php if (!empty($cats)): ?>
 						<button type="submit" class="btn btn-border" id="editLink"><span>削除</span></button>
                     <?php endif; ?>
-                </div>
             </form>
         </div>
     </div>
