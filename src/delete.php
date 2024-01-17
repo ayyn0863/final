@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/iroiro.css">
-    <title>猫の里親-削除画面-</title>
-</head>
-<body>
+<?php session_start(); ?>
     <?php
     require 'connect.php';
 
@@ -34,6 +25,16 @@
     }
     ?>
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iroiro.css">
+    <title>猫の里親-削除画面-</title>
+</head>
+<body>
     <div class="bg_pattern Paper_v2"></div>
     <h1 class="sample">削除</h1>
 

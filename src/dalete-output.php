@@ -1,31 +1,34 @@
 <?php
-require 'connect.php';
+    require 'connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $pdo = new PDO($connect, USER, PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        try {
+            $pdo = new PDO($connect, USER, PASS);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // POSTデータでcatidが設定されているか確認
-        if (isset($_POST['catid'])) {
-            $catid = $_POST['catid'];
+            // POSTデータでcatidが設定されているか確認
+            if (isset($_POST['catid'])) {
+                $catid = $_POST['catid'];
 
-            // 削除用のクエリを準備して実行
-            $stmt = $pdo->prepare("DELETE FROM Cat WHERE catid = ?");
-            $stmt->execute([$catid]);
+                // 削除用のクエリを準備して実行
+                $stmt = $pdo->prepare("DELETE FROM Cat WHERE catid = ?");
+                $stmt->execute([$catid]);
 
-            // 削除が成功したらリダイレクト
-            header('Location: list.php');
-            exit();
-        } else {
-            echo "削除する猫を選択してください。";
+                // 削除が成功したらメッセージを表示
+                echo "削除が成功しました。";
+
+                // リダイレクト
+                header('Location: list.php');
+                exit();
+            } else {
+                echo "削除する猫を選択してください。";
+            }
+
+            $pdo = null;
+        } catch (PDOException $e) {
+            echo "エラー: " . $e->getMessage();
         }
-
-        $pdo = null;
-    } catch (PDOException $e) {
-        echo "エラー: " . $e->getMessage();
+    } else {
+        echo "不正なアクセスです。";
     }
-} else {
-    echo "不正なアクセスです。";
-}
-?>
+    ?>
