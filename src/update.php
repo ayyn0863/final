@@ -47,6 +47,7 @@
                     </label><br>
                 <?php endforeach; ?>
                 <br>
+                <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                 <button type="submit" class="btn btn-border" id="editLink"><span>変更</span></button>
             </form>
         </div>
