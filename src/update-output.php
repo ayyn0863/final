@@ -1,37 +1,31 @@
-<?php session_start(); ?>
 <?php
-    require 'connect.php';
+session_start();
+require 'connect.php';
 
-    // データベースから現在の情報を取得
-    $currentCat = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (isset($_GET['catid'])) {
-        $catid = $_GET['catid'];
+        // POSTデータでcatidが設定されているか確認
+        if (isset($_POST['catid'])) {
+            $catid = $_POST['catid'];
 
-        try {
-            $pdo = new PDO($connect, USER, PASS);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // 選択された猫のIDをセッションに保存
+            $_SESSION['selectedCat'] = $catid;
 
-            // プリペアドステートメントを作成
-            $stmt = $pdo->prepare("SELECT catid, catname, text FROM Cat WHERE catid = ?");
-
-            // プリペアドステートメントを実行
-            $stmt->execute([$catid]);
-
-            // 猫の情報を取得
-            $currentCat = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // データベース接続を閉じる
-            $pdo = null;
-
-        } catch (PDOException $e) {
-            $_SESSION['message'] = "エラー: " . $e->getMessage();
+            // リダイレクト
             header('Location: list.php');
             exit();
+        } else {
+            echo "猫を選択してください。";
         }
-    } else {
-        $_SESSION['message'] = "猫が選択されていません。";
-        header('Location: list.php');
-        exit();
+
+        $pdo = null;
+    } catch (PDOException $e) {
+        echo "エラー: " . $e->getMessage();
     }
+} else {
+    echo "不正なアクセスです。";
+}
 ?>
