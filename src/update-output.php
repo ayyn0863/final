@@ -13,6 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $catname = $_POST['catname'];
             $text = $_POST['text'];
 
+            // 現在の猫の情報を取得
+            $stmt = $pdo->prepare("SELECT catname, text FROM Cat WHERE catid = ?");
+            $stmt->execute([$catid]);
+            $currentCatInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // 変更がない場合はエラーを出力して終了
+            if ($currentCatInfo['catname'] === $catname && $currentCatInfo['text'] === $text) {
+                echo "内容が同じです。";
+                exit();
+            }
+
             // 更新用のクエリを準備して実行
             $stmt = $pdo->prepare("UPDATE Cat SET catname = ?, text = ? WHERE catid = ?");
             $stmt->execute([$catname, $text, $catid]);
