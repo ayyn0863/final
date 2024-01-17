@@ -12,8 +12,8 @@
     <h1 class="sample">更新</h1>
     <div class="container">
         <div class="left-aligned-text">
-            <?php session_start(); ?>
             <?php
+            session_start();
             require 'connect.php';
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,8 +43,6 @@
                 } catch (PDOException $e) {
                     echo "エラー: " . $e->getMessage();
                 }
-            } else {
-                echo "不正なアクセスです。";
             }
             ?>
         </div>
