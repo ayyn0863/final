@@ -51,7 +51,7 @@
                 <div class="bobo">
                     <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                     <?php if (!empty($cats)): ?>
-                        <button type="submit" class="btn btn-border" id="editLink"><span>削除</span></button>
+						<a href="#" type="submit" class="btn btn-border" id="editLink"><span>削除</span></a>
                     <?php endif; ?>
                 </div>
             </form>
