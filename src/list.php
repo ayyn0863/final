@@ -1,10 +1,11 @@
 <?php session_start(); ?>
-<?php require 'connect.php' ;?>
+<?php require 'connect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/iroiro.css">
         <title>猫の里親-一覧画面-</title>
 	</head>
 	<body>

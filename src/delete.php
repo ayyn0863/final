@@ -1,43 +1,64 @@
-<?php session_start(); ?>
-<?php require 'connect.php' ;?>
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/style.css">
-        <title>猫の里親-削除画面-</title>
-	</head>
-	<body>
-        <div class="bg_pattern Paper_v2"></div>
-		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
-		<h1 class="sample">削除</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iroiro.css">
+    <title>猫の里親-削除画面-</title>
+</head>
+<body>
+    <?php
+    require 'connect.php';
 
-		<?php
-			isset($_SESSION['Cat'])
-				echo '<table>';
-				echo '<tr><th>猫no.</th><th>名前</th><th>品種</th><th>説明</th></tr>';
-				$pdo = new PDO ($connect,USER,PASS);
-				$sql=$pdo->prepare(
-					'select Cat.catid,Cat.catname,Varieties.catbreedname,Cat.text
-					from Cat,Varieties where Cat.catbreedid = Varieties.catbreedid');
-				$sql->execute([$_SESSION['Cat']['catid']]);
-				foreach ($sql as $row){
-					$id=$row['catid'];
-					echo '<tr>';
-					echo '<td>',$id,'</td>';
-					echo '<td>';
-					echo $row['catname'];
-					echo '</td>';
-					echo '<td>';
-					echo $row['catbreedname'];
-					echo '</td>';
-					echo '<td>';
-					echo $row['text'];
-					echo '</td>';
-					echo '<td><a href="favorite-delete.php?id=',$id,'">削除</a></td>';
-					echo '</tr>';
-				}
-				echo '</table>';
-		?>
-    </body>
+    try {
+        // データベースへの接続
+        $pdo = new PDO($connect, USER, PASS);
+        // エラーモードを例外に設定
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // プリペアドステートメントを作成
+        $stmt = $pdo->prepare("SELECT catid, catname FROM Cat");
+
+        // プリペアドステートメントを実行
+        $stmt->execute();
+
+        // 猫の一覧を取得
+        $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // データベース接続を閉じる
+        $pdo = null;
+    } catch (PDOException $e) {
+        // エラーが発生した場合はエラーメッセージを表示
+        echo "エラー: " . $e->getMessage();
+    }
+    ?>
+
+    <div class="bg_pattern Paper_v2"></div>
+    <h1 class="sample">一覧</h1>
+
+    <div class="container">
+        <div class="left-aligned-text">
+            <form action="delete-output.php" method="post">
+                <?php foreach ($cats as $cat): ?>
+                    <label>
+                        <input type="radio" name="catid" value="<?php echo $cat['catid']; ?>">
+                        <?php echo $cat['catname']; ?>
+                    </label><br>
+                <?php endforeach; ?>
+                <br>
+
+                <div class="bobo">
+                    <a href="index.html" class="btn btn-border"><span>戻る</span></a>
+                    <?php if (!empty($cats)): ?>
+                        <button type="submit" class="btn btn-border" id="editLink"><span>削除</span></button>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="script/update1.js"></script>
+</body>
 </html>
