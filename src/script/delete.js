@@ -1,10 +1,5 @@
 function showAlertAndRedirect() {
-    alert("削除が成功しました。");
-    window.location.href = "list.php";
-}
-
-function validateForm() {
-    // ラジオボタンが選択されているかを確認
+    // ラジオボタンが選択されているか確認
     var radioButtons = document.getElementsByName("catid");
     var radioButtonChecked = false;
 
@@ -17,8 +12,9 @@ function validateForm() {
 
     if (!radioButtonChecked) {
         alert("削除する猫を選択してください。");
-        return false;
+        return;
     }
 
-    return true;
+    alert("削除が成功しました。");
+    window.location.href = "list.php";
 }

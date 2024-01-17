@@ -40,7 +40,7 @@
 
     <div class="container">
         <div class="left-aligned-text">
-            <form action="delete-output.php" method="post" onsubmit="return validateForm()">
+            <form action="delete-output.php" method="post" onsubmit="showAlertAndRedirect(); return false;">
                 <?php foreach ($cats as $cat): ?>
                     <label>
                         <input type="radio" name="catid" value="<?php echo $cat['catid']; ?>">
@@ -50,7 +50,7 @@
                 <br>
                 <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                 <?php if (!empty($cats)): ?>
-                    <button type="submit" class="btn btn-border" id="editLink" onclick="showAlertAndRedirect()"><span>削除</span></button>
+                    <button type="submit" class="btn btn-border" id="editLink"><span>削除</span></button>
                 <?php endif; ?>
             </form>
         </div>
