@@ -137,6 +137,7 @@ button.btn {
   border-radius: 0.5rem;
 }
 
+button.btn-border,
 a.btn-border {
   margin-bottom: 12px;
   padding: 0;
@@ -148,6 +149,7 @@ a.btn-border {
   border-radius: 0;
 }
 
+button.btn-border span,
 a.btn-border span {
   position: relative;
 
@@ -161,6 +163,7 @@ a.btn-border span {
   background: #fff;
 }
 
+button.btn-border:before,
 a.btn-border:before {
   position: absolute;
   bottom: -8px;
@@ -199,20 +202,24 @@ a.btn-border:before {
   backface-visibility: hidden;
 }
 
+button.btn-border:hover,
 a.btn-border:hover {
   -webkit-transform: translate(0, 3px);
   transform: translate(0, 3px);
 }
 
+button.btn-border:hover:before,
 a.btn-border:hover:before {
   bottom: -5px;
 }
 
+button.btn-border:active,
 a.btn-border:active {
   -webkit-transform: translate(0, 7px);
   transform: translate(0, 7px);
 }
 
+button.btn-border:active:before,
 a.btn-border:active:before {
   bottom: -1px;
 }
