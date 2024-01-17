@@ -1,51 +1,37 @@
-<?php session_start(); ?>
 <?php
-require 'connect.php';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $pdo = new PDO($connect, USER, PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if (isset($_SESSION['catid'])) {
+        try {
+            require 'connect.php';
 
-        // POSTデータでcatidが設定されているか確認
-        if (isset($_SESSION['catid'])) {
+            $pdo = new PDO($connect, USER, PASS);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             $catid = $_SESSION['catid'];
-            $newCatname = $_POST['new_catname'];
-            $newCattext = $_POST['new_cattext'];
+            $catname = $_POST['catname'];
+            $text = $_POST['text'];
 
-            // 現在の猫の情報を取得
-            $stmt = $pdo->prepare("SELECT catname, cattext FROM Cat WHERE catid = ?");
-            $stmt->execute([$catid]);
-            $currentCatInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+            // 更新用のクエリを準備して実行
+            $stmt = $pdo->prepare("UPDATE Cat SET catname = ?, text = ? WHERE catid = ?");
+            $stmt->execute([$catname, $text, $catid]);
 
-            // 現在の情報と新しい情報が同じでないか確認
-            if ($currentCatInfo['catname'] !== $newCatname || $currentCatInfo['cattext'] !== $newCattext) {
-                // 更新用のクエリを準備して実行
-                $stmt = $pdo->prepare("UPDATE Cat SET catname = ?, cattext = ? WHERE catid = ?");
-                $stmt->execute([$newCatname, $newCattext, $catid]);
+            // データベース接続を閉じる
+            $pdo = null;
 
-                // 更新が成功したらメッセージを表示
-                echo "更新が成功しました。";
-            } else {
-                // 内容が同じ場合はアラートを表示
-                echo "内容が同じです。";
-            }
-
-            // セッションのcatidを削除
-            unset($_SESSION['catid']);
-
-            // リダイレクト
+            // 更新が成功したらリダイレクト
             header('Location: list.php');
             exit();
-        } else {
-            echo "猫を選択してください。";
+        } catch (PDOException $e) {
+            echo "エラー: " . $e->getMessage();
         }
-
-        $pdo = null;
-    } catch (PDOException $e) {
-        echo "エラー: " . $e->getMessage();
+    } else {
+        echo "不正なアクセスです。";
+        exit();
     }
 } else {
     echo "不正なアクセスです。";
+    exit();
 }
 ?>
