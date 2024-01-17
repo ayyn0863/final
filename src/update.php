@@ -8,7 +8,6 @@
     <title>猫の里親-更新画面-</title>
 </head>
 <body>
-<?php session_start(); ?>
     <?php
     require 'connect.php';
 
