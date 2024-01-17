@@ -27,7 +27,7 @@
                 $catid = $_POST['catid'];
 
                 // 選択された猫の情報を取得
-                $stmt = $pdo->prepare("SELECT catname, cattext FROM Cat WHERE catid = ?");
+                $stmt = $pdo->prepare("SELECT catname, text FROM Cat WHERE catid = ?");
                 $stmt->execute([$catid]);
                 $catInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
