@@ -1,5 +1,5 @@
+<?php session_start(); ?>
 <?php
-session_start();
 require 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,37 +7,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // 選択された猫のIDを取得
-        $selectedCatId = isset($_SESSION['selectedCat']) ? $_SESSION['selectedCat'] : null;
+        // POSTデータでcatidが設定されているか確認
+        if (isset($_SESSION['catid'])) {
+            $catid = $_SESSION['catid'];
+            $newCatname = $_POST['new_catname'];
+            $newCattext = $_POST['new_cattext'];
 
-        // POSTデータでcatnameとcattextが設定されているか確認
-        if ($selectedCatId && isset($_POST['catname']) && isset($_POST['cattext'])) {
-            $catname = $_POST['catname'];
-            $cattext = $_POST['cattext'];
-
-            // 選択された猫の現在の情報を取得
+            // 現在の猫の情報を取得
             $stmt = $pdo->prepare("SELECT catname, cattext FROM Cat WHERE catid = ?");
-            $stmt->execute([$selectedCatId]);
+            $stmt->execute([$catid]);
             $currentCatInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // 変更があるか確認
-            if ($currentCatInfo['catname'] !== $catname || $currentCatInfo['cattext'] !== $cattext) {
-                // 変更がある場合はクエリを準備して実行
+            // 現在の情報と新しい情報が同じでないか確認
+            if ($currentCatInfo['catname'] !== $newCatname || $currentCatInfo['cattext'] !== $newCattext) {
+                // 更新用のクエリを準備して実行
                 $stmt = $pdo->prepare("UPDATE Cat SET catname = ?, cattext = ? WHERE catid = ?");
-                $stmt->execute([$catname, $cattext, $selectedCatId]);
+                $stmt->execute([$newCatname, $newCattext, $catid]);
 
                 // 更新が成功したらメッセージを表示
-                echo "<script>alert('更新が成功しました。'); window.location='list.php';</script>";
-                exit();
+                echo "更新が成功しました。";
             } else {
-                // 変更がない場合はアラートを表示してindex.htmlにリダイレクト
-                echo "<script>alert('内容が同じです。'); window.location='index.html';</script>";
-                exit();
+                // 内容が同じ場合はアラートを表示
+                echo "内容が同じです。";
             }
-        } else {
-            // 選択されていない場合はアラートを表示してlist.phpにリダイレクト
-            echo "<script>alert('猫を選択してください。'); window.location='list.php';</script>";
+
+            // セッションのcatidを削除
+            unset($_SESSION['catid']);
+
+            // リダイレクト
+            header('Location: list.php');
             exit();
+        } else {
+            echo "猫を選択してください。";
         }
 
         $pdo = null;

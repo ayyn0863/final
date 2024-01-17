@@ -1,18 +1,17 @@
 function validateForm() {
-    var radioButtons = document.getElementsByName('catid');
-    var isSelected = false;
+    var radios = document.getElementsByName("catid");
+    var isChecked = false;
 
-    for (var i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-            isSelected = true;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            isChecked = true;
             break;
         }
     }
 
-    if (!isSelected) {
+    if (!isChecked) {
         alert("猫を選択してください。");
-        return false;
     }
 
-    return true;
+    return isChecked;
 }
