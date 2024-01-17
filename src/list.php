@@ -54,6 +54,7 @@
 		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
 		</div>
 		</div>
+		<img src="img/3.jpg" width="200">
     </body>
 </html>
 <?php
