@@ -18,15 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // データベース接続を閉じる
             $pdo = null;
+
+            // 猫の情報変更画面へリダイレクト
+            header('Location: update-input.php');
+            exit();
         } catch (PDOException $e) {
             echo "エラー: " . $e->getMessage();
         }
     } else {
-        echo "不正なアクセスです。";
+        // 不正なアクセスではなく、セッションのcatidが存在しない場合は何も出力しない
         exit();
     }
 } else {
-    echo "不正なアクセスです。";
+    // 不正なアクセスではなく、POSTリクエストでない場合は何も出力しない
     exit();
 }
 ?>
