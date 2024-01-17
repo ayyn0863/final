@@ -15,21 +15,24 @@
     		品種検索
 			<input type="text" name="keyword">
 			<input type="submit" value="検索">
-		</from>
-	<hr>
+		</form>
+		<hr>
 		<?php
 			echo '<div class="container">';
 			echo '<div class="left-aligned-text">';
 			echo '<table>';
 			echo '<tr><th>猫no.</th><th>名前</th><th>品種</th><th>説明</th></tr>';
-			$pdo = new PDO($connect,USER,PASS);
+			$pdo = new PDO($connect, USER, PASS);
 			if(isset($_POST['keyword'])){
-    			$sql=$pdo->prepare('select * from Varieties where catbreedname like ?');
+    			$sql=$pdo->prepare('select Cat.catid, Cat.catname, Varieties.catbreedname, Cat.text
+                                   from Cat
+                                   join Varieties on Cat.catbreedid = Varieties.catbreedid
+                                   where Varieties.catbreedname like ?');
     			$sql->execute(['%'.$_POST['keyword'].'%']);
 			}else{
-    			$sql=$pdo->query('select Cat.catid,Cat.catname,Varieties.catbreedname,Cat.text
-				from Cat,Varieties
-				where Cat.catbreedid = Varieties.catbreedid');
+    			$sql=$pdo->query('select Cat.catid, Cat.catname, Varieties.catbreedname, Cat.text
+				from Cat
+				join Varieties on Cat.catbreedid = Varieties.catbreedid');
 			}
 			if ($sql->rowCount() > 0) {
 				foreach ($sql as $row) {

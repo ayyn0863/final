@@ -46,10 +46,10 @@
             }
             ?>
             <form action="update-output.php" method="post" onsubmit="return validateForm()">
-                <label for="catname">猫の名前:</label>
+                <label for="catname">猫の名前</label><br>
                 <input type="text" name="catname" value="<?php echo htmlspecialchars($catInfo['catname'], ENT_QUOTES, 'UTF-8'); ?>" required><br>
-                <label for="text">猫の説明:</label>
-                <textarea name="text" required><?php echo htmlspecialchars($catInfo['text'], ENT_QUOTES, 'UTF-8'); ?></textarea><br>
+                <label for="text">猫の説明</label><br>
+                <textarea name="text" cols="30" rows="5" required><?php echo htmlspecialchars($catInfo['text'], ENT_QUOTES, 'UTF-8'); ?></textarea><br>
                 <input type="hidden" name="catid" value="<?php echo $catid; ?>">
                 <a href="index.html" class="btn btn-border"><span>戻る</span></a>
                 <button type="submit" class="btn btn-border" id="editLink"><span>変更</span></button>
