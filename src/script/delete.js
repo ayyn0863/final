@@ -12,9 +12,8 @@ function showAlertAndRedirect() {
 
     if (!radioButtonChecked) {
         alert("削除する猫を選択してください。");
-        return;
+        return false;
     }
 
-    alert("削除が成功しました。");
-    window.location.href = "list.php";
+    return true;
 }

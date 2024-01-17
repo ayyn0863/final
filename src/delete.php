@@ -35,12 +35,12 @@
     <title>猫の里親-削除画面-</title>
 </head>
 <body>
-<div class="bg_pattern Paper_v2"></div>
+    <div class="bg_pattern Paper_v2"></div>
     <h1 class="sample">削除</h1>
 
     <div class="container">
         <div class="left-aligned-text">
-            <form action="delete-output.php" method="post" onsubmit="showAlertAndRedirect(); return false;">
+            <form action="delete-output.php" method="post" onsubmit="return showAlertAndRedirect();">
                 <?php foreach ($cats as $cat): ?>
                     <label>
                         <input type="radio" name="catid" value="<?php echo $cat['catid']; ?>">

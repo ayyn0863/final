@@ -19,14 +19,20 @@
                 header('Location: list.php');
                 exit();
             } else {
-                echo "削除する猫を選択してください。";
+                $_SESSION['message'] = "削除する猫を選択してください。";
+                header('Location: delete.php');
+                exit();
             }
 
             $pdo = null;
         } catch (PDOException $e) {
-            echo "エラー: " . $e->getMessage();
+            $_SESSION['message'] = "エラー: " . $e->getMessage();
+            header('Location: delete.php');
+            exit();
         }
     } else {
-        echo "不正なアクセスです。";
+        $_SESSION['message'] = "不正なアクセスです。";
+        header('Location: delete.php');
+        exit();
     }
 ?>
