@@ -51,6 +51,7 @@
 			echo '</div>';
 			echo '</div>';
 		?>
+		<br>
 		<a href="index.html" class="btn btn-border"><span>戻る</span></a>
 		</div>
 		</div>
