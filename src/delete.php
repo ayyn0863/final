@@ -35,7 +35,7 @@
     ?>
 
     <div class="bg_pattern Paper_v2"></div>
-    <h1 class="sample">一覧</h1>
+    <h1 class="sample">削除</h1>
 
     <div class="container">
         <div class="left-aligned-text">
