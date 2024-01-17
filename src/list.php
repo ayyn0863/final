@@ -13,8 +13,14 @@
         <h1 class="sample">一覧</h1>
 		<form action="list.php" method="post">
     		品種検索
-			<input type="text" name="keyword">
-			<input type="submit" value="検索">
+			<div class="cp_iptxt">
+				<label class="ef">
+					<input type="text" name="keyword">
+				</label>
+			</div>
+			<div class="button011">
+				<input type="submit" value="検索">
+			</div>
 		</form>
 		<hr>
 		<?php
