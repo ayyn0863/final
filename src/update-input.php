@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,7 +13,6 @@
     <h1 class="sample">更新</h1>
     <div class="container">
         <div class="left-aligned-text">
-            <?php session_start(); ?>
             <?php
             require 'connect.php';
 
