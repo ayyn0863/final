@@ -51,7 +51,7 @@
             </div>
         </div>
     </form>
-    <img src="img/1.jpg" width="200">
+    <img src="img/4.jpg" width="250">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="script/reg.js"></script>
