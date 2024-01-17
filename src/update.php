@@ -1,3 +1,38 @@
+<?php
+session_start();
+require 'connect.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // POSTデータでcatidが設定されているか確認
+        if (isset($_POST['catid'])) {
+            $_SESSION['catid'] = $_POST['catid'];
+            $catid = $_POST['catid'];
+
+            // 選択された猫の情報を取得
+            $stmt = $pdo->prepare("SELECT catname, text FROM Cat WHERE catid = ?");
+            $stmt->execute([$catid]);
+            $catInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // データベース接続を閉じる
+            $pdo = null;
+
+            // 猫の情報変更画面へリダイレクト
+            header('Location: update-input.php');
+            exit();
+        } else {
+            echo "猫を選択してください。";
+        }
+    } catch (PDOException $e) {
+        echo "エラー: " . $e->getMessage();
+    }
+} else {
+    echo "不正なアクセスです。";
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,35 +43,8 @@
     <title>猫の里親-更新画面-</title>
 </head>
 <body>
-    <?php
-    require 'connect.php';
-
-    try {
-        // データベースへの接続
-        $pdo = new PDO($connect, USER, PASS);
-        // エラーモードを例外に設定
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // プリペアドステートメントを作成
-        $stmt = $pdo->prepare("SELECT catid, catname FROM Cat");
-
-        // プリペアドステートメントを実行
-        $stmt->execute();
-
-        // 猫の一覧を取得
-        $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // データベース接続を閉じる
-        $pdo = null;
-    } catch (PDOException $e) {
-        // エラーが発生した場合はエラーメッセージを表示
-        echo "エラー: " . $e->getMessage();
-    }
-    ?>
-
     <div class="bg_pattern Paper_v2"></div>
     <h1 class="sample">更新</h1>
-
     <div class="container">
         <div class="left-aligned-text">
             <form action="update-input.php" method="post" onsubmit="return validateForm()">
